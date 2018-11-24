@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp2.1</TargetFramework>
+		<RootNamespace>net.vieapps.Components.Utility</RootNamespace>
+		<AssemblyName>VIEApps.Components.Utility.AssemblyLoader</AssemblyName>
+		<AssemblyTitle>VIEApps NGX Assembly Loader Utility</AssemblyTitle>
+		<AssemblyVersion>10.2.1811.2</AssemblyVersion>
+		<FileVersion>10.2.1811.2</FileVersion>
+		<InformationalVersion>v10.2.netcore-2.1+rev:2018.11.24</InformationalVersion>
+		<Product>VIEApps NGX</Product>
+		<Company>VIEApps.net</Company>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>VIEApps.Components.Utility.AssemblyLoader</PackageId>
+		<Version>10.2.1811.2</Version>
+		<SignAssembly>false</SignAssembly>
+		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
+		<Title>VIEApps NGX Assembly Loader Utility for .NET Core</Title>
+		<Description>The library for dynamic loading an assembly in .NET Core apps</Description>
+		<Authors>VIEApps.net</Authors>
+		<Copyright>© 2018 VIEApps.net</Copyright>
+		<PackageTags>utility;extensions;vieapps;vieapps.components</PackageTags>
+		<PackageReleaseNotes>Change name of assembly file</PackageReleaseNotes>
+		<PackageProjectUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</PackageProjectUrl>
+		<PackageIconUrl>https://github.com/vieapps/Components.Utility/raw/master/logo.png</PackageIconUrl>
+		<RepositoryUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</RepositoryUrl>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<WarningLevel>3</WarningLevel>
+		<DocumentationFile>bin\Debug\netcoreapp2.1\VIEApps.Components.Utility.AssemblyLoader.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<WarningLevel>3</WarningLevel>
+		<DocumentationFile>bin\Release\netcoreapp2.1\VIEApps.Components.Utility.AssemblyLoader.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove=".DS_Store" />
+		<None Remove=".gitattributes" />
+		<None Remove=".gitignore" />
+		<None Remove="LICENSE.md" />
+		<None Remove="README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+	</ItemGroup>
+
+</Project>
