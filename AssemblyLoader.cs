@@ -23,7 +23,7 @@ namespace net.vieapps.Components.Utility
 		ICompilationAssemblyResolver AssemblyResolver { get; }
 
 		/// <summary>
-		/// Creates new instance of assembly loader
+		/// Creates new instance to dynamic load an assembly
 		/// </summary>
 		/// <param name="assemblyPath">The full path to assembly</param>
 		public AssemblyLoader(string assemblyPath)

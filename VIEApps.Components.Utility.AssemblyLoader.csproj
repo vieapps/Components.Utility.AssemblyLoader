@@ -5,14 +5,14 @@
 		<RootNamespace>net.vieapps.Components.Utility</RootNamespace>
 		<AssemblyName>VIEApps.Components.Utility.AssemblyLoader</AssemblyName>
 		<AssemblyTitle>VIEApps NGX Assembly Loader Utility</AssemblyTitle>
-		<AssemblyVersion>10.2.1811.2</AssemblyVersion>
-		<FileVersion>10.2.1811.2</FileVersion>
-		<InformationalVersion>v10.2.netcore-2.1+rev:2018.11.24</InformationalVersion>
+		<AssemblyVersion>10.2.1812.1</AssemblyVersion>
+		<FileVersion>10.2.1812.1</FileVersion>
+		<InformationalVersion>v10.2.netcore-2.1+rev:2018.12.03-logo</InformationalVersion>
 		<Product>VIEApps NGX</Product>
 		<Company>VIEApps.net</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>VIEApps.Components.Utility.AssemblyLoader</PackageId>
-		<Version>10.2.1811.2</Version>
+		<Version>10.2.1812.1</Version>
 		<SignAssembly>false</SignAssembly>
 		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
 		<Title>VIEApps NGX Assembly Loader Utility for .NET Core</Title>
@@ -20,9 +20,9 @@
 		<Authors>VIEApps.net</Authors>
 		<Copyright>© 2018 VIEApps.net</Copyright>
 		<PackageTags>utility;extensions;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Change name of assembly file</PackageReleaseNotes>
-		<PackageProjectUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</PackageProjectUrl>
+		<PackageReleaseNotes>Update logo of the package</PackageReleaseNotes>
 		<PackageIconUrl>https://github.com/vieapps/Components.Utility/raw/master/logo.png</PackageIconUrl>
+		<PackageProjectUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</RepositoryUrl>
 	</PropertyGroup>
 
