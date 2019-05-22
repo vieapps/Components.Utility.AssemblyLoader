@@ -25,25 +25,25 @@ namespace net.vieapps.Components.Utility
 		/// <summary>
 		/// Creates new instance to dynamic load an assembly
 		/// </summary>
-		/// <param name="assemblyPath">The full path to assembly</param>
-		public AssemblyLoader(string assemblyPath)
+		/// <param name="assemblyFilePath">The full path to assembly</param>
+		public AssemblyLoader(string assemblyFilePath)
 		{
 			// load assembly
-			var path = Path.GetDirectoryName(assemblyPath);
-			this.Assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyPath);
+			var directory = Path.GetDirectoryName(assemblyFilePath);
+			this.Assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyFilePath);
 			this.AssemblyLoadContext = AssemblyLoadContext.GetLoadContext(this.Assembly);
 
 			// not dependencies => load referenced assembies
-			if (!File.Exists(Path.Combine(path, $"{Path.GetFileNameWithoutExtension(assemblyPath)}.deps.json")))
+			if (!File.Exists(Path.Combine(directory, $"{Path.GetFileNameWithoutExtension(assemblyFilePath)}.deps.json")))
 			{
-				this.Assembly.GetReferencedAssemblies().ToList().ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(path, $"{assemblyName.Name}.dll")));
+				this.Assembly.GetReferencedAssemblies().ToList().ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(directory, $"{assemblyName.Name}.dll")));
 				return;
 			}
 
 			this.DependencyContext = DependencyContext.Load(this.Assembly);
 			this.CompilationAssemblyResolver = new CompositeCompilationAssemblyResolver(new ICompilationAssemblyResolver[]
 			{
-				new AppBaseCompilationAssemblyResolver(path),
+				new AppBaseCompilationAssemblyResolver(directory),
 				new ReferenceAssemblyPathResolver(),
 				new PackageCompilationAssemblyResolver()
 			});
