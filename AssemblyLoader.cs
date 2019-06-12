@@ -49,18 +49,18 @@ namespace net.vieapps.Components.Utility
 			});
 			this.AssemblyLoadContext.Resolving += (assemblyLoadContext, assemblyName) =>
 			{
-				var runtimeLib = this.DependencyContext.RuntimeLibraries.FirstOrDefault(runtime => string.Equals(runtime.Name, assemblyName.Name, StringComparison.OrdinalIgnoreCase));
-				if (runtimeLib != null)
+				var runtime = this.DependencyContext.RuntimeLibraries.FirstOrDefault(rtLib => string.Equals(rtLib.Name, assemblyName.Name, StringComparison.OrdinalIgnoreCase));
+				if (runtime != null)
 				{
 					var assemblyPaths = new List<string>();
 					this.CompilationAssemblyResolver.TryResolveAssemblyPaths(new CompilationLibrary(
-						runtimeLib.Type,
-						runtimeLib.Name,
-						runtimeLib.Version,
-						runtimeLib.Hash,
-						runtimeLib.RuntimeAssemblyGroups.SelectMany(g => g.AssetPaths),
-						runtimeLib.Dependencies,
-						runtimeLib.Serviceable
+						runtime.Type,
+						runtime.Name,
+						runtime.Version,
+						runtime.Hash,
+						runtime.RuntimeAssemblyGroups.SelectMany(g => g.AssetPaths),
+						runtime.Dependencies,
+						runtime.Serviceable
 					), assemblyPaths);
 					if (assemblyPaths.Count > 0)
 						return assemblyLoadContext.LoadFromAssemblyPath(assemblyPaths[0]);

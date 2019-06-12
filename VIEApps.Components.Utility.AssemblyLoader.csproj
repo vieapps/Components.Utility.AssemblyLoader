@@ -9,14 +9,14 @@
 		<AssemblyTitle>VIEApps NGX Assembly Loader Utility</AssemblyTitle>
 		<SignAssembly>false</SignAssembly>
 		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
-		<AssemblyVersion>10.2.1906.1</AssemblyVersion>
-		<FileVersion>10.2.1906.1</FileVersion>
+		<AssemblyVersion>10.2.1906.2</AssemblyVersion>
+		<FileVersion>10.2.1906.2</FileVersion>
 		<InformationalVersion>v10.2.netstandard2.0+rev:2019.05.23-refactoring</InformationalVersion>
 		<Product>VIEApps NGX</Product>
 		<Company>VIEApps.net</Company>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>VIEApps.Components.Utility.AssemblyLoader</PackageId>
-		<Version>10.2.1906.1</Version>
+		<Version>10.2.1906.2</Version>
 		<Title>VIEApps NGX Assembly Loader Utility</Title>
 		<Description>The library for dynamic loading an assembly in .NET apps</Description>
 		<Authors>VIEApps.net</Authors>
