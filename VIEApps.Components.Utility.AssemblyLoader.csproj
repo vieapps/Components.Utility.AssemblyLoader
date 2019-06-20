@@ -9,14 +9,14 @@
 		<AssemblyTitle>VIEApps NGX Assembly Loader Utility</AssemblyTitle>
 		<SignAssembly>false</SignAssembly>
 		<AssemblyOriginatorKeyFile>../VIEApps.Components.snk</AssemblyOriginatorKeyFile>
-		<AssemblyVersion>10.3.1906.3</AssemblyVersion>
-		<FileVersion>10.3.1906.3</FileVersion>
-		<InformationalVersion>v10.3.netstandard-2.1+rev:2019.06.18-multiple.targets.preview</InformationalVersion>
+		<AssemblyVersion>10.3.1906.4</AssemblyVersion>
+		<FileVersion>10.3.1906.4</FileVersion>
+		<InformationalVersion>v10.3+rev:2019.06.20-multiple.targets</InformationalVersion>
 		<Product>VIEApps NGX</Product>
 		<Company>VIEApps.net</Company>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>VIEApps.Components.Utility.AssemblyLoader</PackageId>
-		<Version>10.3.1906.3-preview</Version>
+		<Version>10.3.1906.4-preview</Version>
 		<Title>VIEApps NGX Assembly Loader Utility</Title>
 		<Description>The library for dynamic loading an assembly in .NET apps</Description>
 		<Authors>VIEApps.net</Authors>
@@ -39,8 +39,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview6-27804-01" />
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' != 'netstandard2.0'">
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview6-27804-01" />
 	</ItemGroup>
 
 </Project>
