@@ -1,6 +1,6 @@
 # VIEApps.Components.Utility.AssemblyLoader
 
-The tiny library to help .NET Core apps dynamic load assembly while running
+The tiny library to help .NET apps load an assembly dynamically while running
 
 ## NuGet
 
