@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.DependencyModel.Resolution;
 
+#if !SIGN
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("VIEApps.Components.XUnitTests")]
+#endif
+
 namespace net.vieapps.Components.Utility
 {
 	public class AssemblyLoader
