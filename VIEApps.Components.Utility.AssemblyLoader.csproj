@@ -13,7 +13,7 @@
 		<AssemblyVersion>10.3$(ReleaseVersion)</AssemblyVersion>
 		<FileVersion>10.3$(ReleaseVersion)</FileVersion>
 		<InformationalVersion>10.3-$(TargetFramework)-$(ReleaseRevision)</InformationalVersion>
-		<Version>10.3$(ReleaseVersion)$(ReleaseSurfix)</Version>
+		<Version>10.3$(ReleaseVersion)$(ReleaseSuffix)</Version>
 		<Product>VIEApps NGX</Product>
 		<Title>VIEApps NGX Assembly Loader Utility</Title>
 		<Description>The library for dynamic loading an assembly in .NET apps</Description>
@@ -21,8 +21,9 @@
 		<Authors>VIEApps.net</Authors>
 		<Company>VIEApps.net</Company>
 		<GeneratePackageOnBuild>$(GeneratePackage)</GeneratePackageOnBuild>
-		<PackageId>VIEApps.Components.Utility.AssemblyLoader$(PackageSurfix)</PackageId>
-		<PackageLicense>LICENSE.md</PackageLicense>
+		<PackageId>VIEApps.Components.Utility.AssemblyLoader$(PackageSuffix)</PackageId>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageIcon>Icon.png</PackageIcon>
 		<PackageOutputPath>..\</PackageOutputPath>
 		<PackageTags>utility;extensions;vieapps;vieapps.components</PackageTags>
 		<PackageReleaseNotes>Support .NET Standard 2.1</PackageReleaseNotes>
@@ -35,20 +36,14 @@
 		<None Remove=".DS_Store" />
 		<None Remove=".gitattributes" />
 		<None Remove=".gitignore" />
-		<None Remove="LICENSE.md" />
 		<None Remove="README.md" />
+		<None Visible="false" Include="LICENSE.md" Pack="true" PackagePath="\" />
+		<None Visible="false" Include="Icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0" />
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.0.0-preview6-27804-01" />
 	</ItemGroup>
 
 </Project>
