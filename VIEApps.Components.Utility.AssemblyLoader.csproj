@@ -13,7 +13,7 @@
 		<Version>10.3$(ReleaseVersion)$(ReleaseSuffix)</Version>
 		<Product>VIEApps NGX</Product>
 		<Title>VIEApps NGX Assembly Loader Utility</Title>
-		<Description>The library for dynamic loading an assembly in .NET apps</Description>
+		<Description>The component for dynamic loading an assembly in .NET apps</Description>
 		<Copyright>© 2020 VIEApps.net</Copyright>
 		<Authors>VIEApps.net</Authors>
 		<Company>VIEApps.net</Company>
@@ -31,7 +31,7 @@
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageOutputPath>../</PackageOutputPath>
 		<PackageTags>utility;extensions;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Add more targets and do some little code refactoring</PackageReleaseNotes>
+		<PackageReleaseNotes>Upgrade to latest components</PackageReleaseNotes>
 		<PackageProjectUrl>https://vieapps.net/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -47,7 +47,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.1.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="3.1.1" />
 		<PackageReference Include="System.Runtime.Loader" Version="4.3.0" />
 	</ItemGroup>
 
