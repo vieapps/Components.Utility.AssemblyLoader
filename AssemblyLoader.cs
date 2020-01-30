@@ -72,5 +72,34 @@ namespace net.vieapps.Components.Utility
 				return null;
 			};
 		}
+
+		/// <summary>
+		/// Gets the type from an assembly by the specified name (full class name)
+		/// </summary>
+		/// <param name="assemblyFilePath">The absolute path of assembly</param>
+		/// <param name="typeName">The type name (full class name)</param>
+		/// <returns></returns>
+		public static Type GetType(string assemblyFilePath, string typeName)
+			=> string.IsNullOrWhiteSpace(assemblyFilePath) || string.IsNullOrWhiteSpace(typeName) || !File.Exists(assemblyFilePath)
+				? null
+				: new AssemblyLoader(assemblyFilePath).Assembly.GetExportedTypes().FirstOrDefault(type => typeName.Equals(type.ToString()));
+
+		/// <summary>
+		/// Gets the type by the specified type name (full class name with assembly)
+		/// </summary>
+		/// <param name="typeNameWithAssembly">The type name (full class name with assembly)</param>
+		/// <returns></returns>
+		public static Type GetType(string typeNameWithAssembly)
+		{
+			if (string.IsNullOrWhiteSpace(typeNameWithAssembly) || typeNameWithAssembly.IndexOf(",") < 0)
+				return null;
+			var type = Type.GetType(typeNameWithAssembly);
+			if (type == null)
+			{
+				var info = typeNameWithAssembly.Trim().Split(',');
+				type = AssemblyLoader.GetType(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{info[1].Trim()}{(info[1].Trim().ToLower().EndsWith(".dll") ? "" : ".dll")}"), info[0].Trim());
+			}
+			return type;
+		}
 	}
 }

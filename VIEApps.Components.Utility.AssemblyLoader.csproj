@@ -13,7 +13,7 @@
 		<Version>10.3$(ReleaseVersion)$(ReleaseSuffix)</Version>
 		<Product>VIEApps NGX</Product>
 		<Title>VIEApps NGX Assembly Loader Utility</Title>
-		<Description>The component for dynamic loading an assembly in .NET apps</Description>
+		<Description>The component for helping .NET apps to dynamic load a type from an assembly</Description>
 		<Copyright>© 2020 VIEApps.net</Copyright>
 		<Authors>VIEApps.net</Authors>
 		<Company>VIEApps.net</Company>
