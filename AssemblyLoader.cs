@@ -96,8 +96,8 @@ namespace net.vieapps.Components.Utility
 			var type = Type.GetType(typeNameWithAssembly);
 			if (type == null)
 			{
-				var info = typeNameWithAssembly.Trim().Split(',');
-				type = AssemblyLoader.GetType(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{info[1].Trim()}{(info[1].Trim().ToLower().EndsWith(".dll") ? "" : ".dll")}"), info[0].Trim());
+				var info = typeNameWithAssembly.Trim().Split(',').Select(data => data.Trim()).ToList();
+				type = AssemblyLoader.GetType(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{info[1]}{(info[1].ToLower().EndsWith(".dll") ? "" : ".dll")}"), info[0]);
 			}
 			return type;
 		}
