@@ -40,7 +40,10 @@ namespace net.vieapps.Components.Utility
 			// not dependencies => load referenced assembies
 			if (!File.Exists(Path.Combine(directory, $"{Path.GetFileNameWithoutExtension(assemblyFilePath)}.deps.json")))
 			{
-				this.Assembly.GetReferencedAssemblies().ToList().ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(directory, $"{assemblyName.Name}.dll")));
+				this.Assembly.GetReferencedAssemblies()
+					.Where(assemblyName => File.Exists(Path.Combine(directory, $"{assemblyName.Name}.dll")))
+					.ToList()
+					.ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(directory, $"{assemblyName.Name}.dll")));
 				return;
 			}
 
