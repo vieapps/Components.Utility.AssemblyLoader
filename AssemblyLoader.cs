@@ -37,43 +37,44 @@ namespace net.vieapps.Components.Utility
 			this.Assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(assemblyFilePath);
 			this.AssemblyLoadContext = AssemblyLoadContext.GetLoadContext(this.Assembly);
 
-			// not dependencies => load referenced assembies
-			if (!File.Exists(Path.Combine(directory, $"{Path.GetFileNameWithoutExtension(assemblyFilePath)}.deps.json")))
+			// have dependencies => load all
+			if (File.Exists(Path.Combine(directory, $"{Path.GetFileNameWithoutExtension(assemblyFilePath)}.deps.json")))
 			{
-				this.Assembly.GetReferencedAssemblies()
-					.Where(assemblyName => File.Exists(Path.Combine(directory, $"{assemblyName.Name}.dll")))
-					.ToList()
-					.ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(directory, $"{assemblyName.Name}.dll")));
-				return;
+				this.DependencyContext = DependencyContext.Load(this.Assembly);
+
+				this.CompilationAssemblyResolver = new CompositeCompilationAssemblyResolver(new ICompilationAssemblyResolver[]
+				{
+					new AppBaseCompilationAssemblyResolver(directory),
+					new ReferenceAssemblyPathResolver(),
+					new PackageCompilationAssemblyResolver()
+				});
+
+				this.AssemblyLoadContext.Resolving += (assemblyLoadContext, assemblyName) =>
+				{
+					var runtime = this.DependencyContext.RuntimeLibraries.FirstOrDefault(rtLib => string.Equals(rtLib.Name, assemblyName.Name, StringComparison.OrdinalIgnoreCase));
+					if (runtime != null)
+					{
+						var assemblyPaths = new List<string>();
+						this.CompilationAssemblyResolver.TryResolveAssemblyPaths(new CompilationLibrary(
+							runtime.Type,
+							runtime.Name,
+							runtime.Version,
+							runtime.Hash,
+							runtime.RuntimeAssemblyGroups.SelectMany(g => g.AssetPaths),
+							runtime.Dependencies,
+							runtime.Serviceable
+						), assemblyPaths);
+						if (assemblyPaths.Count > 0)
+							return assemblyLoadContext.LoadFromAssemblyPath(assemblyPaths[0]);
+					}
+					return null;
+				};
 			}
 
-			this.DependencyContext = DependencyContext.Load(this.Assembly);
-			this.CompilationAssemblyResolver = new CompositeCompilationAssemblyResolver(new ICompilationAssemblyResolver[]
-			{
-				new AppBaseCompilationAssemblyResolver(directory),
-				new ReferenceAssemblyPathResolver(),
-				new PackageCompilationAssemblyResolver()
-			});
-			this.AssemblyLoadContext.Resolving += (assemblyLoadContext, assemblyName) =>
-			{
-				var runtime = this.DependencyContext.RuntimeLibraries.FirstOrDefault(rtLib => string.Equals(rtLib.Name, assemblyName.Name, StringComparison.OrdinalIgnoreCase));
-				if (runtime != null)
-				{
-					var assemblyPaths = new List<string>();
-					this.CompilationAssemblyResolver.TryResolveAssemblyPaths(new CompilationLibrary(
-						runtime.Type,
-						runtime.Name,
-						runtime.Version,
-						runtime.Hash,
-						runtime.RuntimeAssemblyGroups.SelectMany(g => g.AssetPaths),
-						runtime.Dependencies,
-						runtime.Serviceable
-					), assemblyPaths);
-					if (assemblyPaths.Count > 0)
-						return assemblyLoadContext.LoadFromAssemblyPath(assemblyPaths[0]);
-				}
-				return null;
-			};
+			// doesn't have dependencies => load referenced assembies
+			else
+				this.Assembly.GetReferencedAssemblies().Where(assemblyName => File.Exists(Path.Combine(directory, $"{assemblyName.Name}.dll")))
+					.ToList().ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(directory, $"{assemblyName.Name}.dll")));
 		}
 
 		/// <summary>

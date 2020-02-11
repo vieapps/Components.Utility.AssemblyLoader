@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
 		<RootNamespace>net.vieapps.Components.Utility</RootNamespace>
 		<WarningLevel>3</WarningLevel>
 		<DocumentationFile>bin/$(Configuration)/$(TargetFramework)/VIEApps.Components.Utility.AssemblyLoader.xml</DocumentationFile>
@@ -31,7 +31,7 @@
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageOutputPath>../</PackageOutputPath>
 		<PackageTags>utility;extensions;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Fix bugs of extension methods for working with type</PackageReleaseNotes>
+		<PackageReleaseNotes>Restructure: only support LTS targets</PackageReleaseNotes>
 		<PackageProjectUrl>https://vieapps.net/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
