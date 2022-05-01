@@ -64,7 +64,7 @@ namespace net.vieapps.Components.Utility
 							runtime.Dependencies,
 							runtime.Serviceable
 						), assemblyPaths);
-						if (assemblyPaths.Count > 0)
+						if (assemblyPaths.Any())
 							return assemblyLoadContext.LoadFromAssemblyPath(assemblyPaths[0]);
 					}
 					return null;
@@ -73,8 +73,10 @@ namespace net.vieapps.Components.Utility
 
 			// doesn't have dependencies => load referenced assembies
 			else
-				this.Assembly.GetReferencedAssemblies().Where(assemblyName => File.Exists(Path.Combine(directory, $"{assemblyName.Name}.dll")))
-					.ToList().ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(directory, $"{assemblyName.Name}.dll")));
+				this.Assembly.GetReferencedAssemblies()
+					.Where(assemblyName => File.Exists(Path.Combine(directory, $"{assemblyName.Name}.dll")))
+					.ToList()
+					.ForEach(assemblyName => this.AssemblyLoadContext.LoadFromAssemblyPath(Path.Combine(directory, $"{assemblyName.Name}.dll")));
 		}
 
 		/// <summary>
