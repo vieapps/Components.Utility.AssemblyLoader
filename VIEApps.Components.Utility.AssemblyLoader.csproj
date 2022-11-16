@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net5.0;netstandard2.0</TargetFrameworks>
+		<TargetFrameworks>net7.0;net6.0;net5.0;netstandard2.0</TargetFrameworks>
 		<WarningLevel>3</WarningLevel>
 		<NoWarn>1573,1591</NoWarn>
 		<DocumentationFile>bin/$(Configuration)/$(TargetFramework)/VIEApps.Components.Utility.AssemblyLoader.xml</DocumentationFile>
 		<RootNamespace>net.vieapps.Components.Utility</RootNamespace>
 		<AssemblyName>VIEApps.Components.Utility.AssemblyLoader</AssemblyName>
 		<AssemblyTitle>VIEApps NGX Assembly Loader Utility</AssemblyTitle>
-		<AssemblyVersion>10.5$(ReleaseVersion)</AssemblyVersion>
-		<FileVersion>10.5$(ReleaseVersion)</FileVersion>
-		<InformationalVersion>10.5.$([System.DateTime]::Now.Year).$([System.DateTime]::Now.Month).$([System.DateTime]::Now.Day)@$(TargetFramework)#sn:$(Sign)#$(ReleaseRevision)</InformationalVersion>
-		<Version>10.5$(ReleaseVersion)$(ReleaseSuffix)</Version>
+		<AssemblyVersion>10.6$(ReleaseVersion)</AssemblyVersion>
+		<FileVersion>10.6$(ReleaseVersion)</FileVersion>
+		<InformationalVersion>10.6.$([System.DateTime]::Now.Year).$([System.DateTime]::Now.Month).$([System.DateTime]::Now.Day)@$(TargetFramework)#sn:$(Sign)#$(ReleaseRevision)</InformationalVersion>
+		<Version>10.6$(ReleaseVersion)$(ReleaseSuffix)</Version>
 		<Product>VIEApps NGX</Product>
 		<Title>VIEApps NGX Assembly Loader Utility</Title>
 		<Description>The component for helping .NET apps to dynamic load a type from an assembly</Description>
@@ -32,7 +32,7 @@
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageOutputPath>../</PackageOutputPath>
 		<PackageTags>utility;extensions;vieapps;vieapps.components</PackageTags>
-		<PackageReleaseNotes>Multiple targets with multiple component versions</PackageReleaseNotes>
+		<PackageReleaseNotes>Add supports of .NET 7</PackageReleaseNotes>
 		<PackageProjectUrl>https://vieapps.net/</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/vieapps/Components.Utility.AssemblyLoader</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
@@ -42,7 +42,7 @@
 		<None Remove=".DS_Store" />
 		<None Remove=".gitattributes" />
 		<None Remove=".gitignore" />
-		<None Remove="README.md" />
+		<None Visible="false" Include="README.md" Pack="true" PackagePath="\" />
 		<None Visible="false" Include="LICENSE.md" Pack="true" PackagePath="\" />
 		<None Visible="false" Include="Icon.png" Pack="true" PackagePath="\" />
 	</ItemGroup>
@@ -54,6 +54,10 @@
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="7.0.0" />
 	</ItemGroup>
 
 </Project>
